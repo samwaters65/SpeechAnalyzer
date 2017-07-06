@@ -1,0 +1,260 @@
+{% extends "basehome.html" %}
+{% block title %}Demographics{% endblock %}
+{% block content %}
+<H1>Area Demographics</H1>
+<br>
+<br>
+
+
+
+   <script type="text/javascript">
+	var dataToUse = {{ typeDict|tojson }};
+	var JSONObject = JSON.parse(dataToUse);
+    var svg = dimple.newSvg("body", 600, 600);
+	svg.append("rect")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .style("fill", "white")
+	  .style("fill-opacity", "0.6");
+    var data = JSONObject;
+    var chart = new dimple.chart(svg, data);
+    chart.addCategoryAxis("x", "Work Type");
+    chart.addMeasureAxis("y", "% of Population");
+    chart.addSeries(null, dimple.plot.bar);
+	//chart.ease = "bounce";
+	chart.staggerDraw=true;
+    chart.draw(1000);
+	svg.append("text")
+    .attr("x", 250)             
+    .attr("y", 30)
+    .attr("text-anchor", "center")  
+    .style("font-size", "16px") 
+    .style("text-decoration", "underline")  
+    .text("Work Type");
+  </script>
+  
+   <script type="text/javascript">
+	var dataToUse2 = {{ snapDict|tojson }};
+	var JSONObject2 = JSON.parse(dataToUse2);
+    var svg = dimple.newSvg("body", 590, 400);
+	svg.append("rect")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .style("fill", "white")
+	  .style("fill-opacity", "0.6");
+    var data = JSONObject2;
+    var chart = new dimple.chart(svg, data);
+		chart.setBounds(20, 20, 460, 360)
+		chart.addMeasureAxis("p", "% of Population");
+    var ring = chart.addSeries("Food Stamps/SNAP", dimple.plot.pie);
+		ring.getTooltipText = function (e) {
+                return [
+                    e.aggField[0] + ": " + e.pValue + "%"
+                ];
+            };
+		ring.addOrderRule("Food Stamps/SNAP")
+		ring.innerRadius = "50%";
+		chart.addLegend(500, 20, 90, 300, "left");
+		//chart.staggerDraw=true;
+		chart.draw();
+	svg.append("text")
+    .attr("x", 150)             
+    .attr("y", 15)
+    .attr("text-anchor", "center")  
+    .style("font-size", "16px") 
+    .style("text-decoration", "underline")  
+    .text("Food Stamps/SNAP Distribution");
+  </script>
+  
+ 
+  <script type="text/javascript">
+	var dataToUse5 = {{ incomeDict|tojson }};
+	var JSONObject5 = JSON.parse(dataToUse5);
+    var svg = dimple.newSvg("body", 600, 600);
+	svg.append("rect")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .style("fill", "white")
+	  .style("fill-opacity", "0.6");
+    var data = JSONObject5;
+    var chart = new dimple.chart(svg, data);
+    chart.addCategoryAxis("x", "Annual Salary $ (in thousands)");
+    chart.addMeasureAxis("y", "% of Population");
+    chart.addSeries(null, dimple.plot.bar);
+	//chart.ease = "bounce";
+	chart.staggerDraw=true;
+    chart.draw(1000);
+	svg.append("text")
+    .attr("x", 250)             
+    .attr("y", 30)
+    .attr("text-anchor", "center")  
+    .style("font-size", "16px") 
+    .style("text-decoration", "underline")  
+    .text("Annual Salary $ (in thousands)");
+  </script>
+ 
+
+  <script type="text/javascript">
+	var dataToUse6 = {{ edDict|tojson }};
+	var JSONObject6 = JSON.parse(dataToUse6);
+    var svg = dimple.newSvg("body", 600, 600);
+	svg.append("rect")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .style("fill", "white")
+	  .style("fill-opacity", "0.6");
+    var data = JSONObject6;
+    var chart = new dimple.chart(svg, data);
+    chart.addCategoryAxis("x", "Highest Education Level");
+    chart.addMeasureAxis("y", "% of Population");
+    chart.addSeries(null, dimple.plot.bar);
+	//chart.ease = "bounce";
+	chart.staggerDraw=true;
+    chart.draw(1000);
+	svg.append("text")
+    .attr("x", 250)             
+    .attr("y", 30)
+    .attr("text-anchor", "center")  
+    .style("font-size", "16px") 
+    .style("text-decoration", "underline")  
+    .text("Highest Education Level");
+  </script>
+  
+
+<script type="text/javascript">
+	var dataToUse7 = {{ maritalDict|tojson }};
+	var JSONObject7 = JSON.parse(dataToUse7);
+    var svg = dimple.newSvg("body", 600, 600);
+	svg.append("rect")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .style("fill", "white")
+	  .style("fill-opacity", "0.6");
+    var data = JSONObject7;
+    var chart = new dimple.chart(svg, data);
+    chart.addCategoryAxis("x", "Marital Status");
+    chart.addMeasureAxis("y", "% of Population");
+    chart.addSeries(null, dimple.plot.bar);
+	//chart.ease = "bounce";
+	chart.staggerDraw=true;
+    chart.draw(1000);
+	svg.append("text")
+    .attr("x", 250)             
+    .attr("y", 30)
+    .attr("text-anchor", "center")  
+    .style("font-size", "16px") 
+    .style("text-decoration", "underline")  
+    .text("Marital Status");
+  </script>
+
+  
+  
+ <script type="text/javascript">
+	var dataToUse8 = {{ englishDict|tojson }};
+	var JSONObject8 = JSON.parse(dataToUse8);
+    var svg = dimple.newSvg("body", 600, 600);
+	svg.append("rect")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .style("fill", "white")
+	  .style("fill-opacity", "0.6");
+    var data = JSONObject8;
+    var chart = new dimple.chart(svg, data);
+    chart.addCategoryAxis("x", "English Fluency");
+    chart.addMeasureAxis("y", "% of Population");
+    chart.addSeries(null, dimple.plot.bar);
+	//chart.ease = "bounce";
+	chart.staggerDraw=true;
+    chart.draw(1000);
+	svg.append("text")
+    .attr("x", 250)             
+    .attr("y", 30)
+    .attr("text-anchor", "center")  
+    .style("font-size", "16px") 
+    .style("text-decoration", "underline")  
+    .text("English Fluency");
+  </script>
+
+  
+
+  <script type="text/javascript">
+	var dataToUse9 = {{ raceDict|tojson }};
+	var JSONObject9 = JSON.parse(dataToUse9);
+    var svg = dimple.newSvg("body", 600, 600);
+	svg.append("rect")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .style("fill", "white")
+	  .style("fill-opacity", "0.6");
+    var data = JSONObject9;
+    var chart = new dimple.chart(svg, data);
+    chart.addCategoryAxis("x", "Race");
+    chart.addMeasureAxis("y", "% of Population");
+    chart.addSeries(null, dimple.plot.bar);
+	//chart.ease = "bounce";
+	chart.staggerDraw=true;
+    chart.draw(1000);
+	svg.append("text")
+    .attr("x", 250)             
+    .attr("y", 30)
+    .attr("text-anchor", "center")  
+    .style("font-size", "16px") 
+    .style("text-decoration", "underline")  
+    .text("Race");
+  </script>
+  
+ 
+  <script type="text/javascript">
+	var dataToUse10 = {{ ageDict|tojson }};
+	var JSONObject10 = JSON.parse(dataToUse10);
+    var svg = dimple.newSvg("body", 600, 600);
+	svg.append("rect")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .style("fill", "white")
+	  .style("fill-opacity", "0.6");
+    var data = JSONObject10;
+    var chart = new dimple.chart(svg, data);
+    chart.addCategoryAxis("x", "Age in Years");
+    chart.addMeasureAxis("y", "% of Population");
+    chart.addSeries(null, dimple.plot.bar);
+	//chart.ease = "bounce";
+	chart.staggerDraw=true;
+    chart.draw(1000);
+	svg.append("text")
+    .attr("x", 250)             
+    .attr("y", 30)
+    .attr("text-anchor", "center")  
+    .style("font-size", "16px") 
+    .style("text-decoration", "underline")  
+    .text("Age in Years");
+  </script> 
+
+  
+  <script type="text/javascript">
+	var dataToUse11 = {{ ancestryDict|tojson }};
+	var JSONObject11 = JSON.parse(dataToUse11);
+    var svg = dimple.newSvg("body", 600, 600);
+	svg.append("rect")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .style("fill", "white")
+	  .style("fill-opacity", "0.6");
+    var data = JSONObject11;
+    var chart = new dimple.chart(svg, data);
+    chart.addCategoryAxis("x", "Ancestry");
+    chart.addMeasureAxis("y", "% of Population");
+    chart.addSeries(null, dimple.plot.bar);
+	//chart.ease = "bounce";
+	chart.staggerDraw=true;
+    chart.draw(1000);
+	svg.append("text")
+    .attr("x", 250)             
+    .attr("y", 30)
+    .attr("text-anchor", "center")  
+    .style("font-size", "16px") 
+    .style("text-decoration", "underline")  
+    .text("Ancestry");
+  </script> 
+  
+{% endblock %}

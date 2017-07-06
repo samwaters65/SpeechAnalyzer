@@ -1,0 +1,220 @@
+{% extends "basehome.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+{% if sentDict %}
+
+<h4> Historical Metrics </h4>
+
+<body>
+
+<div class="tooltip"><i class="fa fa-info-circle" style = "font-size:20px;color:black"></i>
+<span class="tooltiptext">Here are the instructions</span>
+</div>
+
+<div class="flexbox">
+	<div class = "box">
+  <script type="text/javascript">
+    var dataToUse = {{ sentDict|tojson }};
+	var JSONObject = JSON.parse(dataToUse);
+    var svg = dimple.newSvg("body", 475, 550);
+	svg.append("rect")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .style("fill", "white")
+	  .style("fill-opacity", "0.6");
+    var data = JSONObject;
+    var chart = new dimple.chart(svg, data);
+    var x = chart.addCategoryAxis("x", "SpeechName");
+    chart.addMeasureAxis("y", "Sentiment");
+	x.addOrderRule("Date")
+    chart.addSeries(null, dimple.plot.line);
+    chart.staggerDraw=true;
+    chart.draw(1000);
+	svg.append("text")
+    .attr("x", 150)             
+    .attr("y", 30)
+    .attr("text-anchor", "center")  
+    .style("font-size", "16px") 
+    .style("text-decoration", "underline")  
+    .text("Sentiment Over Time");
+
+  </script>
+  </div>
+  <div class = "box">
+  <script type="text/javascript">
+    var dataToUse2 = {{ relateDict|tojson }};
+	var JSONObject2 = JSON.parse(dataToUse2);
+    var svg = dimple.newSvg("body", 475, 550);
+	svg.append("rect")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .style("fill", "white")
+	  .style("fill-opacity", "0.6");
+    var data = JSONObject2;
+    var chart = new dimple.chart(svg, data);
+    var x = chart.addCategoryAxis("x", "SpeechName");
+    chart.addMeasureAxis("y", "Relatability");
+	x.addOrderRule("Date")
+    chart.addSeries(null, dimple.plot.line);
+    chart.staggerDraw=true;
+    chart.draw(1000);
+	svg.append("text")
+    .attr("x", 150)             
+    .attr("y", 30)
+    .attr("text-anchor", "center")  
+    .style("font-size", "16px") 
+    .style("text-decoration", "underline")  
+    .text("Relatability Score Over Time");
+  </script>
+  </div>
+  
+  <div class="box">
+      <script type="text/javascript">
+	var dataToUse3 = {{ partyDict|tojson }};
+	var JSONObject3 = JSON.parse(dataToUse3);
+    var svg = dimple.newSvg("body", 475, 550);
+	svg.append("rect")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .style("fill", "white")
+	  .style("fill-opacity", "0.6");
+    var data = JSONObject3;
+    var chart = new dimple.chart(svg, data);
+    chart.addCategoryAxis("x", "Party");
+    chart.addMeasureAxis("y", "AvgValue");
+    chart.addSeries(null, dimple.plot.bar);
+	//chart.ease = "bounce";
+	chart.staggerDraw=true;
+    chart.draw(1000);
+	svg.append("text")
+    .attr("x", 150)             
+    .attr("y", 30)
+    .attr("text-anchor", "center")  
+    .style("font-size", "16px") 
+    .style("text-decoration", "underline")  
+    .text("Average Party Affiliation");
+  </script>
+</div>
+<div class="box">
+  <script type="text/javascript">
+    var dataToUse4 = {{ cosineDict|tojson }};
+	var JSONObject4 = JSON.parse(dataToUse4);
+    var svg = dimple.newSvg("body", 475, 550);
+	svg.append("rect")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .style("fill", "white")
+	  .style("fill-opacity", "0.6");
+    var data = JSONObject4;
+    var chart = new dimple.chart(svg, data);
+    var x = chart.addCategoryAxis("x", "SpeechName");
+    chart.addMeasureAxis("y", "Similarity");
+    chart.addSeries(null, dimple.plot.line);
+    chart.staggerDraw=true;
+    chart.draw(1000);
+	svg.append("text")
+    .attr("x", 150)             
+    .attr("y", 30)
+    .attr("text-anchor", "center")  
+    .style("font-size", "16px") 
+    .style("text-decoration", "underline")  
+    .text("Speech Similarity Over Time");
+  </script>
+</div>
+<div class="box">
+      <script type="text/javascript">
+	var dataToUse5 = {{ personalityDict|tojson }};
+	var JSONObject5 = JSON.parse(dataToUse5);
+    var svg = dimple.newSvg("body", 475, 550);
+	svg.append("rect")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .style("fill", "white")
+	  .style("fill-opacity", "0.6");
+    var data = JSONObject5;
+    var chart = new dimple.chart(svg, data);
+    chart.addCategoryAxis("x", "Trait");
+    chart.addMeasureAxis("y", "AvgValue");
+    chart.addSeries(null, dimple.plot.bar);
+	//chart.ease = "bounce";
+	chart.staggerDraw=true;
+    chart.draw(1000);
+	svg.append("text")
+    .attr("x", 150)             
+    .attr("y", 30)
+    .attr("text-anchor", "center")  
+    .style("font-size", "16px") 
+    .style("text-decoration", "underline")  
+    .text("Average Personality Values");
+  </script>
+</div> 
+<div class="box">
+      <script type="text/javascript">
+	var dataToUse6 = {{ personasDict|tojson }};
+	var JSONObject6 = JSON.parse(dataToUse6);
+    var svg = dimple.newSvg("body", 475, 550);
+	svg.append("rect")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .style("fill", "white")
+	  .style("fill-opacity", "0.6");
+    var data = JSONObject6;
+    var chart = new dimple.chart(svg, data);
+    chart.addCategoryAxis("x", "Persona");
+    chart.addMeasureAxis("y", "AvgValue");
+    chart.addSeries(null, dimple.plot.bar);
+	//chart.ease = "bounce";
+	chart.staggerDraw=true;
+    chart.draw(1000);
+	svg.append("text")
+    .attr("x", 150)             
+    .attr("y", 30)
+    .attr("text-anchor", "center")  
+    .style("font-size", "16px") 
+    .style("text-decoration", "underline")  
+    .text("Average Persona Values");
+  </script>
+</div>  
+ <div class="box">
+      <script type="text/javascript">
+	var dataToUse7 = {{ emotionsDict|tojson }};
+	var JSONObject7 = JSON.parse(dataToUse7);
+    var svg = dimple.newSvg("body", 475, 550);
+	svg.append("rect")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .style("fill", "white")
+	  .style("fill-opacity", "0.6");
+    var data = JSONObject7;
+    var chart = new dimple.chart(svg, data);
+    chart.addCategoryAxis("x", "Emotion");
+    chart.addMeasureAxis("y", "AvgValue");
+    chart.addSeries(null, dimple.plot.bar);
+	//chart.ease = "bounce";
+	chart.staggerDraw=true;
+    chart.draw(1000);
+	svg.append("text")
+    .attr("x", 150)             
+    .attr("y", 30)
+    .attr("text-anchor", "center")  
+    .style("font-size", "16px") 
+    .style("text-decoration", "underline")  
+    .text("Average Emotion Values");
+  </script>
+</div> 
+</div>
+</body>
+ 
+ 
+{% else %}
+<br>
+<br>
+<br>
+<br>
+<p style = "font-size: 40px; color:red">
+You do not have any speeches yet to review
+</p>
+{% endif %}
+
+{% endblock %}

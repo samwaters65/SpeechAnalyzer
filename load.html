@@ -1,0 +1,43 @@
+{% extends "basehome.html" %}
+{% block title %}Create Post{% endblock %}
+{% block content %}
+<H1>Enter Your Speech</H1>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<form action="/analyze" method="POST">
+   {{form.hidden_tag()}}
+   <dl>
+	  <dt> Speech Name:
+	  <dd>{{ form.speechName(class_="minitext") }}
+	  <br>
+	  <br>
+	  <dt> Select the audience political leaning:
+	  <dd>{{ form.party(class_="dropdowns") }}
+	  <br>
+	  <br>
+	  <dt> Select the strength of the audience political leaning:
+	  <dd>{{ form.strength(class_="dropdowns") }}
+	  <br>
+	  <br>
+	  <dt> Select the By Sentence Sensitivity:
+	  <dd> {{ form.sensitivity(class_="dropdowns") }}
+	  <br>
+	  <br>
+      <dt><strong>Speech:</strong>
+      <dd>{{ form.body(class_="speechtext") }}
+   </dl>
+   <p>
+      <input type=submit value="Analyze">
+</form>
+
+
+{% endblock %}

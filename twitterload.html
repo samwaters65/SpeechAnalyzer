@@ -1,0 +1,23 @@
+{% extends "basehome.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<H1>Or, Analyze Up To Three Different People Or Phrases to Compare Twitter Sentiment</H1>
+<!-- <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}"> -->
+<form action="/twitterAnalyze" method="POST" id = "twitterentry">
+   {{twitterForm.hidden_tag()}}
+   <dl>
+      <dt>First:</dt>
+      <dd>{{ twitterForm.query1(class_="shorttext") }}</dd>
+	  <br>
+	  <dt>Second:</dt>
+      <dd>{{ twitterForm.query2(class_="shorttext") }}</dd>
+	  <br>
+	  <dt>Third:</dt>
+      <dd>{{ twitterForm.query3(class_="shorttext") }}</dd>
+   <br>
+      <button class="button3">Compare Sentiment</button>
+	 </dl>
+</form>
+
+{% endblock %}

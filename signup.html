@@ -1,0 +1,49 @@
+{% extends "base2.html" %}
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+<body>
+<ul class="navpane">
+<li class = "navlogo"><a href="/"><img src = "../static/speechbubble.jpg"  alt="Logo" style = "width:65px; height=100%;"></a></li>
+<li class = "navitem"><a href="/">Home</a></li>
+<li class = "navitem"><a href="/contact">Contact Us</a></li>
+<li class = "navitem"><a href="/about">About Us</a></li>
+<li class = "navitem"><a href="/login">Log In</a></li>
+<li class = "navitem"><a href="/signup">Sign Up</a></li>
+</ul>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<form action="/signupCheck" method="POST" id = "loginform">
+   {{signupForm.hidden_tag()}}
+   <dl>
+	  <h1>Create an Account</h1>
+	  <br>
+	  <br>
+	  <dt> First Name:
+	  <dd>{{ signupForm.first(class_="shorttext") }}
+	  <br>
+	  <br>
+	  <dt> Last Name:
+	  <dd>{{ signupForm.last(class_="shorttext") }}
+	  <br>
+	  <br>
+      <dt>Email:
+      <dd>{{ signupForm.email(class_="shorttext") }}
+	  <br>
+	  <br>
+      <dt>Password:
+      <dd>{{ signupForm.password(class_="shorttext") }}
+   </dl>
+   <p>
+      <input type=submit value="Sign Up" class="button3">
+</form>
+
+{% endblock %}

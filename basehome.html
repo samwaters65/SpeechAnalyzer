@@ -1,0 +1,233 @@
+<html>
+  <head>
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Speech Analyzer</title>
+    {% endif %}
+	<link rel="icon" href="../static/quotes.png">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='jsgrid.min.css') }}" />
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='jsgrid-theme.min.css') }}" />
+	<script type="text/javascript" src="{{ url_for('static', filename='jsgrid.min.js') }}"></script>
+	<script src="http://d3js.org/d3.v4.min.js"></script>
+	<script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!--<script type = "text/javascript">// <![CDATA[
+	function preloader() {
+	document.getElementById("loading").style.display = "none";
+	document.getElementById("content").style.display = "block";
+	}//preloader
+	window.onload = preloader;
+
+// ]]></script>
+
+-->
+	
+<style>
+/*MODAL - By Sentence */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 85%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+
+.conservative {
+	background-color: yellow;
+    color: black;
+}
+
+.liberal {
+	background-color: green;
+    color: white;
+}
+
+.libertarian {
+	background-color: gray;
+    color: black;
+}
+
+.green {
+	background-color: purple;
+    color: white;
+}
+
+
+
+/* Form Styling */
+
+.shorttext {
+	padding: 6px 10px;
+	border-radius: 4px;
+	size: 35;
+	border: 2px solid #ccc;
+}
+
+
+.minitext {
+	padding: 6px 10px;
+	border-radius: 4px;
+	size: 12;
+	border: 2px solid #ccc;
+}
+
+
+.speechtext {
+	width: 80%;
+	height: 250px;
+	padding: 12px 20px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	background-color:#f8f8f8;
+}
+
+
+.dropdowns {
+	width: auto;
+	padding: 6px 10px;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+}
+
+/* Tooltips */
+
+.tooltip {
+    position: relative;
+	left: 95%;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+ 
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+}
+ 
+
+ 
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+
+
+/* Table Styling */
+
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+	-webkit-flex: 1;
+}
+
+
+
+th, td {
+    padding: 15px;
+    text-align: left;
+	border-bottom: 1px solid #ddd
+}
+
+
+
+tr:hover {
+	background-color: #f5f5f5
+}
+	
+	
+tr:nth-child(even) {
+	background-color: #f2f2f2
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+</style>
+	
+</head>
+ {% block content %}{% endblock %}
+  </body>
+</html>

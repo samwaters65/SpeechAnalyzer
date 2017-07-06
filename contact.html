@@ -1,0 +1,71 @@
+{% extends "base2.html" %}
+
+{% block content %}
+
+<body>
+<ul class="navpane">
+<li class = "navlogo"><a href="/"><img src = "../static/speechbubble.jpg"  alt="Logo" style = "width:65px; height=100%;"></a></li>
+<li class = "navitem"><a href="/">Home</a></li>
+<li class = "navitem"><a href="/contact">Contact Us</a></li>
+<li class = "navitem"><a href="/about">About Us</a></li>
+<li class = "navitem"><a href="/login">Log In</a></li>
+<li class = "navitem"><a href="/signup">Sign Up</a></li>
+</ul>
+
+  <h2>Contact Us</h2>
+  {% if success %}
+  <p>Thank you for your message. We'll get back to you shortly.</p>
+  
+  {% else %}
+  {% for message in cForm.name.errors %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+ 
+  {% for message in cForm.email.errors %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+ 
+  {% for message in cForm.subject.errors %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+ 
+  {% for message in cForm.message.errors %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  <form action="{{ url_for('contact') }}" method=post id="contactform">
+	{{ cForm.hidden_tag() }}
+	<dl>
+	<dt style = "font-size:20px">{{ cForm.name.label }}</dt>
+	<dd>
+    {{ cForm.name(class_="shorttext") }}
+	</dd>
+	<br>
+	<dt style = "font-size:20px">
+    {{ cForm.email.label }}
+	</dt>
+	<dd>
+    {{ cForm.email(class_="shorttext") }}
+	</dd>
+	<br>
+	
+	<dt style = "font-size:20px">
+    {{ cForm.subject.label }}
+	</dt>
+	<dd>
+    {{ cForm.subject(class_="shorttext") }}
+	</dd>
+	<br>
+	<dt style = "font-size:20px">
+    {{ cForm.message.label }}
+	</dt>
+	<dd>
+    {{ cForm.message(class_="contacttext") }}
+	</dd>
+	<br>
+	<br>
+ 
+    {{ cForm.submit(class_="button3") }}
+	</dl>
+  </form>
+  {% endif %}
+{% endblock %}

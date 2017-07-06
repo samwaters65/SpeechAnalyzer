@@ -1,0 +1,27 @@
+{% extends "base3.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+
+
+<ul class="navpane">
+<li class = "navlogo"><a href="/"><img src = "../static/speechbubble.jpg"  alt="Logo" style = "width:65px; height=100%;"></a></li>
+<li class = "navitem"><a href="/history" target="iframe_a">Return to History</a></li>
+<li class = "navitem"><a href="/load" target="iframe_a">Analyze Speech</a></li>
+<li class = "navitem"><a href="/demoload" target = "iframe_a">Demographic Review</a></li>
+<li class = "navitem"><a href="/twitterload" target = "iframe_a">Twitter Sentiment</a></li>
+<!--<li class = "profileicon"><div class = "dropdown"><i class="fa fa-user-circle-o"></i><div class="dropdown-content">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a></div></div></li>
+-->
+<li><a href = '/logout' id = "logout">Log Out</a></li>
+<li id = "usersname">Welcome {{ firstname }}!</li>
+</ul>
+<br />
+
+<iframe height="100%" width="100%" src="/history" name="iframe_a" style="border:none;"></iframe>
+
+
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "basehome.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<form action="/demographics" method="POST">
+   {{demoForm.hidden_tag()}}
+   <dl>
+      <dt>Address, City/State, or Zip:
+      <dd>{{ demoForm.cityState(class_="shorttext") }}
+   </dl>
+   <p>
+      <input type=submit value="Demographic Review">
+</form>
+
+{% endblock %}

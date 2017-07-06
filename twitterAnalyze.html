@@ -1,0 +1,42 @@
+{% extends "basehome.html" %}
+{% block title %}Create Post{% endblock %}
+{% block content %}
+<H1>Speech Results</H1>
+
+<br>
+
+<h4>Twitter Sentiment Comparison</h4>
+
+<div id="chartContainer">
+
+
+  <script type="text/javascript">
+	var dataToUse2 = {{ twitterDict2|tojson }};
+	var JSONObject2 = JSON.parse(dataToUse2);
+    var svg = dimple.newSvg("body", 475, 550);
+	svg.append("rect")
+      .attr("width", "100%")
+      .attr("height", "100%")
+      .style("fill", "white")
+	  .style("fill-opacity", "0.6");
+    var data = JSONObject2;
+    var chart = new dimple.chart(svg, data);
+    chart.addCategoryAxis("x", ["Name", "Measure"]);
+    chart.addMeasureAxis("y", "Value");
+    chart.addSeries("Measure", dimple.plot.bar);
+	//chart.ease = "bounce";
+	//chart.addLegend(500, 20, 90, 300, "left", "Measure");
+	chart.staggerDraw=true;
+    chart.draw(1000);
+	svg.append("text")
+    .attr("x", 150)             
+    .attr("y", 30)
+    .attr("text-anchor", "center")  
+    .style("font-size", "16px") 
+    .style("text-decoration", "underline")  
+    .text("Twitter");
+  </script>
+
+
+  
+{% endblock %}

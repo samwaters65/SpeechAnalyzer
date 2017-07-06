@@ -1,0 +1,59 @@
+<html>
+  <head>
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Speech Analyzer</title>
+    {% endif %}
+	<link rel="icon" href="../static/quotes.png">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='jsgrid.min.css') }}" />
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='jsgrid-theme.min.css') }}" />
+	<script type="text/javascript" src="{{ url_for('static', filename='jsgrid.min.js') }}"></script>
+	<script src="http://d3js.org/d3.v4.min.js"></script>
+	<script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+</head>
+<body>
+<!--
+  <body>
+  <div id = "wrapper">
+  <div id = "header">
+  <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="/home">Home</a>
+  <a href="/about">About Us</a>
+  <a href="/main">My Account</a>
+  <a href="/contact">Contact Us</a>
+  <a href="/logout">Logout</a>
+</div>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+</div>
+</div>
+
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+    <br>
+  <br>
+  <br>
+  
+ -->
+    {% block content %}{% endblock %}
+  </body>
+</html>
